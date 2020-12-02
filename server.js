@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// Models
+const db = require("./app/models"); // ini sebenernya manggil file index, tpi sudah otomatis dia jadi tidak usah "./app/models/index.js"
+
 const app = express();
 
 let whiteList = [
@@ -20,18 +23,24 @@ let cosrOption = {
 }
 app.use(cors(cosrOption));
 
-// parse request application/json x-www-form-urlencode
+// parse request of content-type - application/json
 app.use(bodyParser.json());
+
+// parse request of content-type - application/x-www-form-urlencode
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Sync database
+db.sequelize.sync();
+
+// Simple route
 app.get('/', (req, res) => {
   res.json({
     message: "Welcome to Express MySQL"
   });
 });
 
+// set port, listen for request
 const PORT = process.env.PORT || 8080;
-
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
