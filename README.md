@@ -3,6 +3,8 @@
 # Install NodeJS
 1. Install Node.js
 
+note: `npm install`
+
 # Create A Project
 1. Inisialisasi `$ npm init` (Enter enter aja dan pas entry point: (ganti namanya jadi server.js))
 2. Install express, sequelize, mysql2, body-parser, cors `$ npm install express sequelize mysql2 body-parser cors --save`
